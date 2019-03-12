@@ -35,4 +35,53 @@ def insertion_sort(seq):
             seq[pos], seq[pos-1] = seq[pos-1], seq[pos]
             pos -= 1
     return seq
-        
+
+'''
+归并排序
+'''
+def merge_sort(seq):
+    n = len(seq)
+    if(n <= 1):
+        return seq
+    else:
+        left_half = seq[:n//2]
+        right_half = seq[n//2:]
+        new_seq = merge_sort_core(left_half, right_half)
+        return new_seq
+
+def merge_sort_core(left, right):
+    seq = []
+    i = j = 0
+    while(i < len(left) and j < len(right)):
+        if(left[i] > right[j]):
+            seq.append(left[i])
+            i += 1
+        else:
+            seq.append(right[j])
+            j += 1
+    if(i < len(left)):
+        seq += left[i:]
+    else:
+        seq += right[j:]
+    return seq
+
+
+'''
+快排 no in place法
+以数组第一个元素为pivot，按元素大小将数组拆分为两组
+对拆分后的数组再进行该操作
+最后数组被分成只剩一个或零个元素时，合并时会自动变成有序的
+'''
+def quick_sort(seq):
+    n = len(seq)
+    if(n <= 1):
+        return seq
+    pivot = seq[0]
+    left = []
+    right = []
+    for i in range(1, n):    
+        if(seq[i] < pivot):
+            left.append(seq[i])
+        else:
+            right.append(seq[i])
+    return quick_sort(left) + [pivot] + quick_sort(right)
