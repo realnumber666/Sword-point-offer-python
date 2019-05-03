@@ -21,8 +21,10 @@ def partition(arr, start, end):
             r -= 1
     # 交换r和pivot，完成本轮排序
     arr[r], arr[start] = arr[start], arr[r]
-    return arr
+    return r
+'''
+partition 返回的应该是pivot所在的index
+'''
 
-
-arr = [10, 23, 51, 18, 4, 31, 5, 13]
-print partition(arr , 0, len(arr)-1)
+# arr = [10, 23, 51, 18, 4, 31, 5, 13]
+# print partition(arr , 0, len(arr)-1)
